@@ -4,7 +4,7 @@ WORKDIR    /var/app
 
 RUN        pip3 install virtualenv
 RUN        virtualenv /var/app
-RUN        /var/app/bin/pip install --download-cache /src uwsgi
+RUN        /var/app/bin/pip install uwsgi
 
 RUN        useradd uwsgi -s /bin/false
 RUN        mkdir /var/log/uwsgi
