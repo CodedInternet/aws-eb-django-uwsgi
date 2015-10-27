@@ -11,6 +11,7 @@ RUN        mkdir /var/log/uwsgi
 RUN        chown -R uwsgi:uwsgi /var/log/uwsgi
 
 ONBUILD    ADD . /var/app
+ONBUILD	   RUN if [ -f /var/app/packages.txt ]; then apt-get update && cat /var/app/packages.txt | xargs apt-get install -y; fi
 ONBUILD    RUN if [ -f /var/app/requirements.txt ]; then /var/app/bin/pip install -r /var/app/requirements.txt; fi
 
 ENV        UWSGI_NUM_PROCESSES    1
